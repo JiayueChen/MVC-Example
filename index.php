@@ -1,6 +1,14 @@
 <?php 
 require_once('database.php');
 
+// var_dump($_POST);
+if ($_POST) {
+	$name = $_POST['productName'];
+	$price = $_POST['price'];
+
+	insertAItems($name, $price);
+}
+
 $all_items = getAllItems();
  ?>
 
@@ -25,7 +33,7 @@ $all_items = getAllItems();
  	</ul>
 
  	<!-- action 为空则提交到自己 -->
- 	<form action="">
+ 	<form action="" method="post">
  		<label for="">Name:</label>
  		<input type="text" name="productName">
  		<label for="">Price:</label>

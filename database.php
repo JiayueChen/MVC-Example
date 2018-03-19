@@ -41,7 +41,7 @@ function insertAItems($name, $price) {
 
 	$affected_rows = $stmt->rowCount();
 
-	return $result;
+	return $affected_rows;
 }
 
 
