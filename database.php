@@ -45,14 +45,14 @@ function insertAItem($name, $price) {
 }
 
 
-function deleteItem($name, $price) {
+function deleteItem($id) {
 // Create a PDO connection object
 	$pdo = new PDO('mysql:host=localhost;dbname=shopping_cart;charset=utf8mb4', 'root', 'root');
 
-	$stmt = $pdo->prepare("DELETE FROM items WHERE name = :name");
+	$stmt = $pdo->prepare("DELETE FROM items WHERE id = :id");
 
 	$stmt->execute(
-		array(':name'=>$name)
+		array(':id'=>$id)
 	);
 
 	$affected_rows = $stmt->rowCount();

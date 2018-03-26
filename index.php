@@ -27,16 +27,17 @@ $all_items = getAllItems();
 	<ul>
 		<?php 
 		foreach ($all_items as $item) {
-			echo "<li>Name:" . $item['name'];
+			echo '<li id="'. $item['id'] . '">Name:' . $item['name'];
 			echo "<br>";
 			echo "Price:" . $item['price'];
 			echo "<br>";
-			echo '<button onclick="deleteItem(\'' . $item['name'] . '\')">Delete</button>';
+			echo '<button onclick="deleteItem(\'' . $item['id'] . '\')">Delete</button>';
 			echo "</li>";
 
 		}
 		?>
 	</ul>
+	<div class="info"></div>
 
 	<!-- action 为空则提交到自己 -->
 	<form action="" method="post">
@@ -53,19 +54,23 @@ $all_items = getAllItems();
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 	<script>
-		function deleteItem(name) {
+		function deleteItem(id) {
 			//console.log(name);
 			//Ajax to connect back-end
 			$.post(
+				//可以写成"delete.php"
 				"http://192.168.33.10/mvc1/delete.php",
+
 				{
-					"delete_name": name
+					"delete_id": id
 				},
 				function(data) {
-
+					//console.log(data.message);
+					$('.info').html(data.message);
+					$('#' + id).hide();
 				},
 				"json"
-				)
+				);
 
 		}
 	</script>
