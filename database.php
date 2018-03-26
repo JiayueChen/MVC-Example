@@ -19,7 +19,7 @@ function getAllItems() {
 	return $result;
 }
 
-function insertAItems($name, $price) {
+function insertAItem($name, $price) {
 // Create a PDO connection object
 	$pdo = new PDO('mysql:host=localhost;dbname=shopping_cart;charset=utf8mb4', 'root', 'root');
 
@@ -38,6 +38,22 @@ function insertAItems($name, $price) {
 		)
 	);
 
+
+	$affected_rows = $stmt->rowCount();
+
+	return $affected_rows;
+}
+
+
+function deleteItem($name, $price) {
+// Create a PDO connection object
+	$pdo = new PDO('mysql:host=localhost;dbname=shopping_cart;charset=utf8mb4', 'root', 'root');
+
+	$stmt = $pdo->prepare("DELETE FROM items WHERE name = :name");
+
+	$stmt->execute(
+		array(':name'=>$name)
+	);
 
 	$affected_rows = $stmt->rowCount();
 
