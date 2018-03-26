@@ -5,12 +5,13 @@ require_once('database.php');
 if ($_POST) {
 	$name = $_POST['productName'];
 	$price = $_POST['price'];
+	$db = new Database();
 
-	insertAItem($name, $price);
+	$db->insertAItem($name, $price);
 }
 
-
-$all_items = getAllItems();
+$db = new Database();
+$all_items = $db->getAllItems();
 
 
 
